@@ -1,0 +1,5 @@
+com\bala\frontend\Controller\UserController.class
+com\bala\frontend\Controller\HomeController.class
+com\bala\frontend\Controller\CategoryController.class
+com\bala\frontend\Controller\SupplierController.class
+com\bala\frontend\Controller\ProductController.class
