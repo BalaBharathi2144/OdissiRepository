@@ -18,9 +18,6 @@
 		<c:if test="${carousel}">
 		<jsp:include page="carousel.jsp" />
 		</c:if>
-		<c:if test="${home}">
-		<jsp:include page="carousel.jsp" />
-		</c:if>
 		<c:if test="${user}">
 		<jsp:include page="signInPage.jsp" />
 		</c:if>
@@ -36,14 +33,29 @@
 		<c:if test="${product}">
 			<jsp:include page="product.jsp" />
 		</c:if>
-		<c:if test="${viewProducts}">
+		<c:if test="${cartpage}">
+			<jsp:include page="cart.jsp" />
+		</c:if>
+		<c:if test="${viewallproduct}">
 			<jsp:include page="viewProducts.jsp" />
+		</c:if>
+		<c:if test="${viewoneproduct}">
+			<jsp:include page="productDescription.jsp" />
 		</c:if>
 		<c:if test="${supplier}">
 			<jsp:include page="supplier.jsp" />
 		</c:if>
 		<c:if test="${cart}">
 			<jsp:include page="cart.jsp" />
+		</c:if>
+		<c:if test="${address}">
+			<jsp:include page="address.jsp" />
+		</c:if>
+		<c:if test="${orderpage}">
+			<jsp:include page="order.jsp" />
+		</c:if>
+		<c:if test="${receiptpage}">
+			<jsp:include page="receipt.jsp" />
 		</c:if>
 	</div>
 	

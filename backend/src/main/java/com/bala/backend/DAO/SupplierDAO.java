@@ -10,5 +10,5 @@ public interface SupplierDAO
 	boolean updateSupplier(Supplier supplier);
 	boolean deleteSupplier(Supplier supplier);
 	List<Supplier> selectAllSupplier();
-	Supplier selectOneSupplier(int supplier_Id);
+	Supplier selectOneSupplier(String supplier_Email);
 }

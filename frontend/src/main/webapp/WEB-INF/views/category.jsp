@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="cr" value="${pageContext.request.contextPath}"/>
 <style type=text/css>
 /*
 ** Style Simple Ecommerce Theme for Bootstrap 4
@@ -11,62 +12,76 @@
 	margin-right: 10%;
 	margin-left: 10%;
 }
+
 .bloc_left_price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 150%;
+	color: #c01508;
+	text-align: center;
+	font-weight: bold;
+	font-size: 150%;
 }
+
 .category_block li:hover {
-    background-color: #007bff;
+	background-color: #007bff;
 }
+
 .category_block li:hover a {
-    color: #ffffff;
+	color: #ffffff;
 }
+
 .category_block li a {
-    color: #343a40;
+	color: #343a40;
 }
+
 .add_to_cart_block .price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 200%;
-    margin-bottom: 0;
+	color: #c01508;
+	text-align: center;
+	font-weight: bold;
+	font-size: 200%;
+	margin-bottom: 0;
 }
+
 .add_to_cart_block .price_discounted {
-    color: #343a40;
-    text-align: center;
-    text-decoration: line-through;
-    font-size: 140%;
+	color: #343a40;
+	text-align: center;
+	text-decoration: line-through;
+	font-size: 140%;
 }
+
 .product_rassurance {
-    padding: 10px;
-    margin-top: 15px;
-    background: #ffffff;
-    border: 1px solid #6c757d;
-    color: #6c757d;
+	padding: 10px;
+	margin-top: 15px;
+	background: #ffffff;
+	border: 1px solid #6c757d;
+	color: #6c757d;
 }
+
 .product_rassurance .list-inline {
-    margin-bottom: 0;
-    text-transform: uppercase;
-    text-align: center;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	text-align: center;
 }
+
 .product_rassurance .list-inline li:hover {
-    color: #343a40;
+	color: #343a40;
 }
+
 .reviews_product .fa-star {
-    color: gold;
+	color: gold;
 }
+
 .pagination {
-    margin-top: 20px;
+	margin-top: 20px;
 }
+
 footer {
-    background: #343a40;
-    padding: 40px;
+	background: #343a40;
+	padding: 40px;
 }
+
 footer a {
-    color: #f8f9fa!important
-}</style>
+	color: #f8f9fa !important
+}
+</style>
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet"
@@ -100,10 +115,10 @@ footer a {
 					</div>
 				</c:if>
 				<c:if test="${edit}">
-					<c:set var="url" value="updateCategory"></c:set>
+					<c:set var="url" value="${cr}/admin/updateCategory"></c:set>
 				</c:if>
 				<c:if test="${!edit}">
-					<c:set var="url" value="addCategory"></c:set>
+					<c:set var="url" value="${cr}/admin/addCategory"></c:set>
 				</c:if>
 
 				<div class="card-body">
@@ -113,8 +128,9 @@ footer a {
 							<div class="form-group">
 								<label for="name">Id</label>
 								<form:input type="text" class="form-control" name="category_Id"
-									id="cid" aria-describedby="emailHelp" placeholder="Enter Category Id"
-									path="category_Id" readonly="true" />
+									id="cid" aria-describedby="emailHelp"
+									placeholder="Enter Category Id" path="category_Id"
+									readonly="true" />
 							</div>
 						</c:if>
 						<div class="form-group">
@@ -146,7 +162,8 @@ footer a {
 						<th>Category Id</th>
 						<th>Category Name</th>
 						<th>Category Description</th>
-						<th>Edit/Delete</th>
+						<th>Edit</th>
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -156,9 +173,9 @@ footer a {
 							<td>${c.category_Name}</td>
 							<td>${c.category_Desc}</td>
 							<td class="text-center"><a class='btn btn-info btn-xs'
-								href="editCategory?catid=${c.category_Id}"><span
-									class="glyphicon glyphicon-edit"></span> Edit</a> <a
-								href="deleteCategory?catid=${c.category_Id}"
+								href="${cr}/admin/editCategory?catid=${c.category_Id}"><span
+									class="glyphicon glyphicon-edit"></span> Edit</a></td>
+							<td><a href="${cr}/admin/deleteCategory?catid=${c.category_Id}"
 								class="btn btn-danger btn-xs"> <span
 									class="glyphicon glyphicon-remove"></span> Del
 							</a></td>

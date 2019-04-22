@@ -50,7 +50,7 @@ public class SupplierController
 //		}
 //	}
 
-	@RequestMapping("/supplier")
+	@RequestMapping("/registersupplier")
 	String product(Model model) {
 		model.addAttribute("supplier", true);
 		model.addAttribute("mysupplier", new Supplier());
@@ -172,9 +172,9 @@ public class SupplierController
 	}
 
 	@RequestMapping("/deleteSupplier")
-	String deleteproduct(@RequestParam("supid") int supplier_Id, Model model) {
+	String deleteproduct(@RequestParam("supid") String supplier_Email, Model model) {
 		try {
-			if (supplierDAO.deleteSupplier(supplierDAO.selectOneSupplier(supplier_Id)))
+			if (supplierDAO.deleteSupplier(supplierDAO.selectOneSupplier(supplier_Email)))
 				return "redirect:/supplier";
 			else {
 				model.addAttribute("supplier", true);
@@ -202,9 +202,9 @@ public class SupplierController
 	}
 
 	@RequestMapping("/editSupplier")
-	String editproduct(@RequestParam("supid") int supplier_Id, Model model) {
+	String editproduct(@RequestParam("supid") String supplier_Email, Model model) {
 		model.addAttribute("supplier", true);
-		model.addAttribute("mysupplier", supplierDAO.selectOneSupplier(supplier_Id));
+		model.addAttribute("mysupplier", supplierDAO.selectOneSupplier(supplier_Email));
 		model.addAttribute("suplist", supplierDAO.selectAllSupplier());
 		model.addAttribute("error1", false);
 		model.addAttribute("success", false);

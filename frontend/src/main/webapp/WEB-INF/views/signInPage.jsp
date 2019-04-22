@@ -146,6 +146,11 @@ body {
 		})
 </script>
 <div id="logreg-forms">
+	<c:if test="${error}">
+		<div class="alert alert-danger">
+			<strong>Failure! Username or Password Incorrect.</strong>
+		</div>
+	</c:if>
 	<c:if test="${success}">
 		<div class="alert alert-success">
 			<strong>Success!</strong>Sign In Successful.
@@ -166,12 +171,12 @@ body {
 			<strong>Failed!</strong>Contact Your Administrator.
 		</div>
 	</c:if>
-	<form class="form-signin">
+	<form class="form-signin" action="perform_login" method="Post">
 		<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
 			Sign in</h1>
-		<input type="email" id="inputEmail" class="form-control"
+		<input type="email" name="user_name" id="user_name" class="form-control"
 			placeholder="Email address" required="" autofocus=""> 
-			<input type="password" id="inputPassword" class="form-control"
+			<input type="password" name="user_password" id="user_password" class="form-control"
 			placeholder="Password" required="">
 
 		<button class="btn btn-success btn-block" type="submit">

@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="cr" value="${pageContext.request.contextPath}" />
 <style type=text/css>
 /*
 ** Style Simple Ecommerce Theme for Bootstrap 4
@@ -13,60 +14,72 @@
 }
 
 .bloc_left_price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 150%;
+	color: #c01508;
+	text-align: center;
+	font-weight: bold;
+	font-size: 150%;
 }
+
 .category_block li:hover {
-    background-color: #007bff;
+	background-color: #007bff;
 }
+
 .category_block li:hover a {
-    color: #ffffff;
+	color: #ffffff;
 }
+
 .category_block li a {
-    color: #343a40;
+	color: #343a40;
 }
+
 .add_to_cart_block .price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 200%;
-    margin-bottom: 0;
+	color: #c01508;
+	text-align: center;
+	font-weight: bold;
+	font-size: 200%;
+	margin-bottom: 0;
 }
+
 .add_to_cart_block .price_discounted {
-    color: #343a40;
-    text-align: center;
-    text-decoration: line-through;
-    font-size: 140%;
+	color: #343a40;
+	text-align: center;
+	text-decoration: line-through;
+	font-size: 140%;
 }
+
 .product_rassurance {
-    padding: 10px;
-    margin-top: 15px;
-    background: #ffffff;
-    border: 1px solid #6c757d;
-    color: #6c757d;
+	padding: 10px;
+	margin-top: 15px;
+	background: #ffffff;
+	border: 1px solid #6c757d;
+	color: #6c757d;
 }
+
 .product_rassurance .list-inline {
-    margin-bottom: 0;
-    text-transform: uppercase;
-    text-align: center;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	text-align: center;
 }
+
 .product_rassurance .list-inline li:hover {
-    color: #343a40;
+	color: #343a40;
 }
+
 .reviews_product .fa-star {
-    color: gold;
+	color: gold;
 }
+
 .pagination {
-    margin-top: 20px;
+	margin-top: 20px;
 }
+
 footer {
-    background: #343a40;
-    padding: 40px;
+	background: #343a40;
+	padding: 40px;
 }
+
 footer a {
-    color: #f8f9fa!important
+	color: #f8f9fa !important
 }
 </style>
 <link
@@ -103,14 +116,14 @@ footer a {
 					</div>
 				</c:if>
 				<c:if test="${edit}">
-					<c:set var="url" value="updateProduct"></c:set>
+					<c:set var="url" value="${cr}/supplier/updateProduct"></c:set>
 				</c:if>
 				<c:if test="${!edit}">
-					<c:set var="url" value="addProduct"></c:set>
+					<c:set var="url" value="${cr}/supplier/addProduct"></c:set>
 				</c:if>
 				<div class="card-body">
-					<form:form method="Post" enctype="multipart/form-data" role="form" modelAttribute="myproduct"
-						action="${url}">
+					<form:form method="Post" enctype="multipart/form-data" role="form"
+						modelAttribute="myproduct" action="${url}">
 						<c:if test="${edit}">
 							<div class="form-group">
 								<label for="name">Id</label>
@@ -125,6 +138,12 @@ footer a {
 								aria-describedby="emailHelp" placeholder="Enter product name"
 								path="product_Name" />
 							<form:errors path="product_Name" cssStyle="color:Red"></form:errors>
+						</div>
+						<div class="form-group">
+							<label for="message">Author</label>
+							<form:textarea class="form-control" id="message" rows="6"
+								placeholder="Enter your text here" path="product_Author"></form:textarea>
+							<form:errors path="product_Author" cssStyle="color:Red"></form:errors>
 						</div>
 						<div class="form-group">
 							<label for="message">Description</label>
@@ -155,11 +174,16 @@ footer a {
 								placeholder="Enter your text here" path="quantity"></form:textarea>
 							<form:errors path="quantity" cssStyle="color:Red"></form:errors>
 						</div>
+						<div class="form-group">
+							<form:hidden  path="supplier.supplier_Id" value="${sessionScope.supplierid}" ></form:hidden>
+						</div>
+
 						<!-- class="custom-select custom-file-input" -->
 						<div class="form-group">
 							<label for="message">Product Image</label>
-							<form:input type="file" class="form-control custom-select" name="fileToUpload" id="fileToUpload"
-								 path="product_Image" required="true"/>
+							<form:input type="file" class="form-control custom-select"
+								name="fileToUpload" id="fileToUpload" path="product_Image"
+								required="true" />
 						</div>
 						<div class="mx-auto">
 							<form:button type="submit" class="btn btn-primary text-right">Submit</form:button>
@@ -176,32 +200,41 @@ footer a {
 					<tr class="movie-table-head">
 						<th>Product Id</th>
 						<th>Product Name</th>
-						<th>Product Description</th>
+						<th>Product Author</th>
+						<!-- 						<th>Product Description</th> -->
 						<th>Product Category</th>
-						<th>Product Price</th>
-						<th>Product Quantity</th>
+						<th>Seller Name</th>
+						<th>Price</th>
+						<th>Quantity</th>
 						<th>Product Image</th>
-						<th>Edit/Delete</th>
+						<th>Edit</th>
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${prolist}" var="c">
-						<tr>
-							<td>${c.product_Id}</td>
-							<td>${c.product_Name}</td>
-							<td>${c.product_Desc}</td>
-							<td>${c.product_Category.category_Name}</td>
-							<td>${c.price}</td>
-							<td>${c.quantity}</td>
-							<td><img src="resources/pimages/${c.product_Id}.jpg" width="50" height="50"/></td>
-							<td class="text-center"><a class='btn btn-info btn-xs'
-								href="editProduct?proid=${c.product_Id}"><span
-									class="glyphicon glyphicon-edit"></span> Edit</a> <a
-								href="deleteProduct?proid=${c.product_Id}"
-								class="btn btn-danger btn-xs"> <span
-									class="glyphicon glyphicon-remove"></span> Del
-							</a></td>
-						</tr>
+						<c:if test="${sessionScope.supplierid==c.supplier.supplier_Id}">
+							<tr>
+								<td>${c.product_Id}</td>
+								<td>${c.product_Name}</td>
+								<td>${c.product_Author}</td>
+								<%-- 							<td>${c.product_Desc}</td> --%>
+								<td>${c.product_Category.category_Name}</td>
+								<td>${c.supplier.supplier_Name}</td>
+								<td>${c.price}</td>
+								<td>${c.quantity}</td>
+								<td><img src="${cr}/resources/pimages/${c.product_Id}.jpg"
+									width="50" height="50" /></td>
+								<td class="text-center"><a class='btn btn-info btn-xs'
+									href="${cr}/supplier/editProduct?proid=${c.product_Id}"><span
+										class="glyphicon glyphicon-edit"></span> Edit</a></td>
+								<td><a
+									href="${cr}/supplier/deleteProduct?proid=${c.product_Id}"
+									class="btn btn-danger btn-xs"> <span
+										class="glyphicon glyphicon-remove"></span> Del
+								</a></td>
+							</tr>
+						</c:if>
 					</c:forEach>
 				</tbody>
 			</table>

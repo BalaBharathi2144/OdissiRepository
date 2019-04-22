@@ -23,7 +23,7 @@ public class SupplierDAOImpl implements SupplierDAO{
 			UserCred usercred=new UserCred();
 			usercred.setEmailid(supplier.getSupplier_Emailid());
 			usercred.setUser_Password(supplier.getSupplier_Password());
-			usercred.setRole("Role_Admin");
+			usercred.setRole("ROLE_ADMIN");
 			usercred.setStatus("true");
 			sessionFactory.getCurrentSession().save(supplier);
 			sessionFactory.getCurrentSession().save(usercred);
@@ -73,11 +73,11 @@ public class SupplierDAOImpl implements SupplierDAO{
 		}
 	}
 
-	public Supplier selectOneSupplier(int supplier_Id) {
+	public Supplier selectOneSupplier(String supplier_Email) {
 		// TODO Auto-generated method stub
 		try {
 			return (Supplier) sessionFactory.getCurrentSession()
-					.createQuery("from Supplier where supplier_Id=" + supplier_Id).uniqueResult();
+					.createQuery("from Supplier where supplier_Emailid='"+supplier_Email+"'").uniqueResult();
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

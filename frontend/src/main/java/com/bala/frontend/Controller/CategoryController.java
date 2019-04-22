@@ -14,6 +14,7 @@ import com.bala.backend.DAO.CategoryDAO;
 import com.bala.backend.model.Category;
 
 @Controller
+@RequestMapping("/admin")
 public class CategoryController 
 {
 	@Autowired

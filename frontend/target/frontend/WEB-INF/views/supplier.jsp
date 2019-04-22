@@ -142,7 +142,7 @@ footer a {
 						<div class="form-group">
 							<label for="message">Email Id</label>
 							<form:input class="form-control" id="message" rows="6"
-								placeholder="Enter your text here" path="supplier_Emailid" />
+								placeholder="Enter your emailid here" path="supplier_Emailid" />
 							<form:errors path="supplier_Emailid" cssStyle="color:Red"></form:errors>
 						</div>
 						<div class="form-group">
@@ -163,13 +163,6 @@ footer a {
 								placeholder="Enter your Location" path="location"></form:textarea>
 							<form:errors path="location" cssStyle="color:Red"></form:errors>
 						</div>
-<!-- 						class="custom-select custom-file-input" -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="message">Product Image</label> -->
-<%-- 							<form:input type="file" class="form-control custom-select" --%>
-<%-- 								name="fileToUpload" id="fileToUpload" path="product_Image" --%>
-<%-- 								required="true" /> --%>
-<!-- 						</div> -->
 						<div class="mx-auto">
 							<form:button type="submit" class="btn btn-primary text-right">Submit</form:button>
 						</div>
@@ -188,7 +181,6 @@ footer a {
 						<th>Supplier Emailid</th>
 						<th>Supplier Phno</th>
 						<th>Supplier Location</th>
-						<th>Edit/Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -199,19 +191,10 @@ footer a {
 							<td>${c.supplier_Emailid}</td>
 							<td>${c.supplier_Phno}</td>
 							<td>${c.location}</td>
-<%-- 							<td><img src="resources/pimages/${c.supplier_Id}.jpg" --%>
-<!-- 								width="50" height="50" /></td> -->
-							<td class="text-center"><a class='btn btn-info btn-xs'
-								href="editSupplier?supid=${c.supplier_Id}"><span
-									class="glyphicon glyphicon-edit"></span> Edit</a> <a
-								href="deleteSupplier?supid=${c.supplier_Id}"
-								class="btn btn-danger btn-xs"> <span
-									class="glyphicon glyphicon-remove"></span> Del
-							</a></td>
-						</tr>
+						</tr> 
 					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
+ 				</tbody> 
+ 			</table> 
+ 		</div>
+ 	</div>
 </div>

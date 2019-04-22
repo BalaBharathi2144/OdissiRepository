@@ -25,6 +25,10 @@ public class Product
 	
 	@Column(nullable=false,columnDefinition="text")
 	@NotEmpty(message="Product Description is mandatory")
+	private String product_Author;
+	
+	@Column(nullable=false,columnDefinition="text")
+	@NotEmpty(message="Product Description is mandatory")
 	private String product_Desc;
 	
 	@ManyToOne
@@ -56,6 +60,14 @@ public class Product
 
 	public void setProduct_Id(int product_Id) {
 		this.product_Id = product_Id;
+	}
+
+	public String getProduct_Author() {
+		return product_Author;
+	}
+
+	public void setProduct_Author(String product_Author) {
+		this.product_Author = product_Author;
 	}
 
 	public String getProduct_Desc() {

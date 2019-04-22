@@ -57,7 +57,7 @@ public class ProductController {
 		}
 	}
 
-	@RequestMapping("/product")
+	@RequestMapping("/supplier/product")
 	String product(Model model) {
 		model.addAttribute("product", true);
 		model.addAttribute("myproduct", new Product());
@@ -72,10 +72,11 @@ public class ProductController {
 		return "index";
 	}
 
-	@RequestMapping("/addProduct")
+	@RequestMapping("/supplier/addProduct")
 	String insertproduct(@Valid @ModelAttribute("myproduct") Product p, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) 
 		{
+			System.out.println(bindingResult.toString());
 			System.out.println(bindingResult.toString());
 			model.addAttribute("product", true);
 			model.addAttribute("myproduct", p);
@@ -130,7 +131,7 @@ public class ProductController {
 		return "index";
 	}
 
-	@RequestMapping("/updateProduct")
+	@RequestMapping("/supplier/updateProduct")
 	String updateproduct(@Valid @ModelAttribute("myproduct") Product p, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.toString());
@@ -187,7 +188,7 @@ public class ProductController {
 		return "index";
 	}
 
-	@RequestMapping("/deleteProduct")
+	@RequestMapping("/supplier/deleteProduct")
 	String deleteproduct(@RequestParam("proid") int product_Id, Model model) {
 		try {
 			if (productDAO.deleteProduct(productDAO.selectOneProduct(product_Id)))
@@ -219,7 +220,7 @@ public class ProductController {
 		}
 	}
 
-	@RequestMapping("/editProduct")
+	@RequestMapping("/supplier/editProduct")
 	String editproduct(@RequestParam("proid") int product_Id, Model model) {
 		model.addAttribute("product", true);
 		model.addAttribute("myproduct", productDAO.selectOneProduct(product_Id));

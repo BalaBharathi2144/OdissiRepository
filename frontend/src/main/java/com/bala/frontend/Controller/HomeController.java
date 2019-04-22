@@ -1,22 +1,24 @@
 package com.bala.frontend.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.bala.backend.DAO.ProductDAO;
+import com.bala.backend.model.Product;
 
 @Controller
 public class HomeController 
 {
-	@RequestMapping("/")
+	@Autowired
+	ProductDAO productDAO;
+	
+	@RequestMapping(value={"/","/home"})
 	String carousel(Model model)
 	{
 		model.addAttribute("carousel", true);
-		return "index";
-	}
-	@RequestMapping("home")
-	String home(Model model)
-	{
-		model.addAttribute("home", true);
 		return "index";
 	}
 	@RequestMapping("/aboutus")
@@ -31,10 +33,19 @@ public class HomeController
 		model.addAttribute("contactUs", true);
 		return "index";
 	}
-	@RequestMapping("/viewProducts")
-	String viewProducts(Model model)
+	@RequestMapping("/viewAllProduct")
+	String viewallproduct(Model model) 
 	{
-		model.addAttribute("viewProducts", true);
+		model.addAttribute("viewallproduct", true);
+		model.addAttribute("myproduct", new Product());
+		model.addAttribute("prolist", productDAO.selectAllProduct());
+		return "index";
+	}
+	@RequestMapping("/viewOneProduct")
+	String viewoneproduct(@RequestParam("proid") int product_Id, Model model) 
+	{
+		model.addAttribute("viewoneproduct", true);
+		model.addAttribute("myproduct", productDAO.selectOneProduct(product_Id));
 		return "index";
 	}
 	@RequestMapping("/cart")
